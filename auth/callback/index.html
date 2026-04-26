@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Miga — Email verificado</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="robots" content="noindex"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream: oklch(96% 0.02 95);
+      --ink: oklch(20% 0.04 320);
+      --ink-soft: oklch(35% 0.04 320);
+      --ink-mute: oklch(55% 0.03 320);
+      --lime: oklch(88% 0.20 125);
+      --aubergine: oklch(30% 0.08 320);
+      --persimmon: oklch(68% 0.20 35);
+
+      --serif: 'Instrument Serif', serif;
+      --sans: 'Space Grotesk', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--cream);
+      font-family: var(--sans);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    .stage {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 64px 28px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 580px;
+      text-align: center;
+    }
+
+    .sticker {
+      display: inline-block;
+      background: var(--lime);
+      color: var(--ink);
+      border: 2px solid var(--ink);
+      border-radius: 100px;
+      padding: 10px 22px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 22px;
+      box-shadow: 4px 4px 0 var(--ink);
+      line-height: 1.1;
+      margin-bottom: 32px;
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-bottom: 24px;
+    }
+
+    .headline {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(56px, 11vw, 116px);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      margin: 0 0 28px;
+      color: var(--ink);
+    }
+    .headline .alt {
+      font-style: italic;
+      color: var(--aubergine);
+    }
+
+    .sub {
+      font-family: var(--serif);
+      font-size: clamp(19px, 2vw, 24px);
+      line-height: 1.4;
+      color: var(--ink-soft);
+      margin: 0 auto 40px;
+      max-width: 480px;
+      text-wrap: pretty;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 28px;
+      border: 2px solid var(--ink);
+      border-radius: 999px;
+      background: var(--lime);
+      color: var(--ink);
+      text-decoration: none;
+      box-shadow: 4px 4px 0 var(--ink);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 17px;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+    }
+    .cta:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+    .cta:active {
+      transform: translate(2px, 2px);
+      box-shadow: 0 0 0 var(--ink);
+    }
+
+    .hint {
+      margin-top: 20px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+
+    .footer {
+      margin-top: 56px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+
+    @media (max-width: 600px) {
+      .stage { padding: 48px 24px; }
+      .sticker { font-size: 19px; padding: 9px 18px; }
+      .sub { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="stage">
+    <div class="card">
+      <span class="sticker">listo, ya estás dentro</span>
+      <div class="eyebrow">Miga · email verificado</div>
+      <h1 class="headline">
+        Tu cuenta está <span class="alt">activa</span>.
+      </h1>
+      <p class="sub">
+        Tocá el botón para volver a la app y terminar de configurar tu cocina.
+      </p>
+      <a id="open-app" class="cta" href="pantryai://auth/callback">
+        Abrir Miga →
+      </a>
+      <div class="hint">si no abre, instalá Miga primero</div>
+      <div class="footer">★ Cociná · Llevá · Guardá</div>
+    </div>
+  </main>
+
+  <script>
+    // Supabase's /verify endpoint redirects here after confirming the email.
+    // The auth tokens land in the URL fragment (implicit flow) or query string
+    // (PKCE) — forward whichever we got into the app via the custom scheme so
+    // the in-app callback (app/auth/callback.tsx) can pick them up and create
+    // a session. The custom scheme is used (not the universal link) because
+    // tapping a link to the page you're already on doesn't reliably trigger
+    // a Universal Link / App Link in mobile browsers.
+    (function () {
+      var search = window.location.search || '';
+      var hash = window.location.hash || '';
+      var deeplink = 'pantryai://auth/callback' + search + hash;
+      var btn = document.getElementById('open-app');
+      if (btn) btn.setAttribute('href', deeplink);
+    })();
+  </script>
+</body>
+</html>
