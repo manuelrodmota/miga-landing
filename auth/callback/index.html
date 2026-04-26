@@ -154,31 +154,14 @@
         Tu cuenta está <span class="alt">activa</span>.
       </h1>
       <p class="sub">
-        Tocá el botón para volver a la app y terminar de configurar tu cocina.
+        Tocá el botón para volver a la app e iniciar sesión con tu correo y contraseña.
       </p>
-      <a id="open-app" class="cta" href="pantryai://auth/callback">
+      <a class="cta" href="pantryai://login?verified=1">
         Abrir Miga →
       </a>
       <div class="hint">si no abre, instalá Miga primero</div>
       <div class="footer">★ Cociná · Llevá · Guardá</div>
     </div>
   </main>
-
-  <script>
-    // Supabase's /verify endpoint redirects here after confirming the email.
-    // The auth tokens land in the URL fragment (implicit flow) or query string
-    // (PKCE) — forward whichever we got into the app via the custom scheme so
-    // the in-app callback (app/auth/callback.tsx) can pick them up and create
-    // a session. The custom scheme is used (not the universal link) because
-    // tapping a link to the page you're already on doesn't reliably trigger
-    // a Universal Link / App Link in mobile browsers.
-    (function () {
-      var search = window.location.search || '';
-      var hash = window.location.hash || '';
-      var deeplink = 'pantryai://auth/callback' + search + hash;
-      var btn = document.getElementById('open-app');
-      if (btn) btn.setAttribute('href', deeplink);
-    })();
-  </script>
 </body>
 </html>
