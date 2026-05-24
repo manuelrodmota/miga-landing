@@ -2,10 +2,11 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["DRN383MU42.com.migatheapp.app"],
-        "components": [
-          { "/": "/*" }
-        ]
+        "appIDs": [
+          "DRN383MU42.com.migatheapp.app",
+          "PV5AF93HCZ.com.migatheapp.app"
+        ],
+        "components": [{ "/": "/*" }]
       }
     ]
   }
