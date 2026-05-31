@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Miga — Página no encontrada (404)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream: oklch(96% 0.02 95);
+      --ink: oklch(20% 0.04 320);
+      --ink-soft: oklch(35% 0.04 320);
+      --ink-mute: oklch(55% 0.03 320);
+      --lime: oklch(88% 0.20 125);
+      --aubergine: oklch(30% 0.08 320);
+      --persimmon: oklch(68% 0.20 35);
+      --lemon: oklch(88% 0.18 100);
+
+      --serif: 'Instrument Serif', serif;
+      --sans: 'Space Grotesk', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--cream);
+      font-family: var(--sans);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    .stage {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 64px 80px;
+    }
+
+    .panel {
+      width: 100%;
+      max-width: 760px;
+      text-align: center;
+      position: relative;
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-bottom: 30px;
+    }
+
+    /* ─── Illustration cluster: empty plate ─────────────── */
+    .cluster {
+      position: relative;
+      width: 260px;
+      height: 260px;
+      margin: 0 auto 4px;
+    }
+    .cluster .plate { position: absolute; inset: 0; display: grid; place-items: center; }
+    .cluster .crumb { position: absolute; }
+    .c1 { top: 4%;  left: 8%;   transform: rotate(-12deg); }
+    .c2 { top: 12%; right: 6%;  transform: rotate(20deg); }
+    .c3 { bottom: 6%; left: 14%; transform: rotate(8deg); }
+
+    .float { animation: bob 5s ease-in-out infinite; }
+    .float.b { animation-delay: -1.6s; }
+    .float.c { animation-delay: -3.1s; }
+    @keyframes bob {
+      0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+      50%      { transform: translateY(-9px) rotate(var(--r, 0deg)); }
+    }
+
+    /* ─── 404 headline ─────────────────────────────────── */
+    .code {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(120px, 22vw, 240px);
+      line-height: 0.82;
+      letter-spacing: -0.04em;
+      margin: 0;
+      color: var(--ink);
+    }
+    .code .alt { font-style: italic; color: var(--persimmon); }
+
+    .headline {
+      font-family: var(--serif);
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.04;
+      letter-spacing: -0.01em;
+      margin: 18px 0 0;
+      color: var(--ink);
+    }
+    .headline em { font-style: italic; color: var(--aubergine); }
+
+    .sub {
+      font-family: var(--serif);
+      font-size: clamp(19px, 2vw, 23px);
+      line-height: 1.4;
+      color: var(--ink-soft);
+      max-width: 460px;
+      margin: 18px auto 0;
+      text-wrap: pretty;
+    }
+
+    /* ─── CTAs ─────────────────────────────────────────── */
+    .ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 26px;
+      border: 2px solid var(--ink);
+      border-radius: 14px;
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 17px;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      box-shadow: 4px 4px 0 var(--ink);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+      cursor: pointer;
+    }
+    .btn:hover  { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+    .btn:active { transform: translate(2px, 2px);  box-shadow: 0 0 0 var(--ink); }
+    .btn-primary { background: var(--lime); color: var(--ink); }
+    .btn-ghost   { background: var(--cream); color: var(--ink); }
+    .btn .arrow  { font-size: 18px; }
+
+    .footer {
+      margin-top: 56px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+
+    @media (max-width: 600px) {
+      .stage { padding: 44px 24px; }
+      .cluster { width: 200px; height: 200px; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <main class="stage">
+    <div class="panel">
+      <div class="eyebrow">Miga · Error 404</div>
+
+      <!-- Illustration: empty plate with scattered crumbs -->
+      <div class="cluster" aria-hidden="true">
+        <div class="plate float">
+          <svg width="240" height="240" viewBox="0 0 100 100" fill="none">
+            <ellipse cx="50" cy="54" rx="42" ry="40" fill="oklch(98% 0.02 95)" stroke="var(--ink)" stroke-width="2.5"/>
+            <ellipse cx="50" cy="54" rx="30" ry="28" fill="none" stroke="var(--ink)" stroke-width="1.5" opacity="0.45"/>
+            <path d="M40 50 Q44 56 39 60" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round" opacity="0.3"/>
+            <circle cx="56" cy="48" r="1.6" fill="var(--persimmon)"/>
+            <circle cx="46" cy="60" r="1.3" fill="var(--aubergine)"/>
+            <circle cx="60" cy="58" r="1.1" fill="var(--ink)" opacity="0.4"/>
+          </svg>
+        </div>
+        <!-- crumbs / lost ingredients -->
+        <div class="crumb c1 float b" style="--r:-12deg;">
+          <svg width="58" height="58" viewBox="0 0 80 80" fill="none">
+            <path d="M16 40 C10 28, 20 16, 36 16 C58 16, 72 28, 70 44 C68 60, 54 68, 38 68 C24 68, 20 54, 16 40Z"
+                  fill="var(--lemon)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M16 16 L12 12 M64 60 L70 66" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="crumb c2 float c" style="--r:20deg;">
+          <svg width="48" height="48" viewBox="0 0 80 80" fill="none">
+            <path d="M12 60 C14 35, 35 12, 66 14 C66 40, 52 66, 22 68 C19 68, 15 65, 12 60Z"
+                  fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
+            <path d="M14 62 L60 22" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="crumb c3 float" style="--r:8deg;">
+          <svg width="42" height="42" viewBox="0 0 80 80" fill="none">
+            <path d="M15 42 C14 28, 28 22, 40 22 C52 22, 66 27, 66 42 C66 58, 55 69, 40 69 C26 70, 15 58, 15 42Z"
+                  fill="var(--persimmon)" stroke="var(--ink)" stroke-width="2"/>
+            <path d="M32 23 C34 18, 38 15, 40 12 C42 15, 46 18, 48 23" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" fill="var(--lime)"/>
+            <path d="M40 12 L42 6" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <h1 class="code"><span>4</span><span class="alt">0</span><span>4</span></h1>
+
+      <h2 class="headline">Esta receta <em>no existe</em>.</h2>
+      <p class="sub">
+        El plato que buscabas se enfrió o cambió de lugar.
+        Volvé a la cocina y empezamos de nuevo.
+      </p>
+
+      <div class="ctas">
+        <a class="btn btn-primary" href="/">
+          Volver al inicio <span class="arrow">→</span>
+        </a>
+        <a class="btn btn-ghost" href="#" onclick="history.back();return false;">
+          Ir atrás
+        </a>
+      </div>
+
+      <div class="footer">★ Cociná · Llevá · Guardá</div>
+    </div>
+  </main>
+</body>
+</html>
